@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "lancamento")
@@ -30,7 +30,7 @@ public class Lancamento implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data", nullable = false)
-    private LocalDate data;
+    private Date data;
 
     @Column(name = "descricao", nullable = true)
     private String descricao;
@@ -39,10 +39,10 @@ public class Lancamento implements Serializable {
     private String localizacao;
 
     @Column(name = "data_criacao", nullable = false)
-    private LocalDate dataCriacao;
+    private Date dataCriacao;
 
     @Column(name = "data_atualizacao", nullable = false)
-    private LocalDate dataAtualizacao;
+    private Date dataAtualizacao;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo", nullable = false)
@@ -62,11 +62,11 @@ public class Lancamento implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(Date data) {
         this.data = data;
     }
 
@@ -86,19 +86,19 @@ public class Lancamento implements Serializable {
         this.localizacao = localizacao;
     }
 
-    public LocalDate getDataCriacao() {
+    public Date getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(LocalDate dataCriacao) {
+    public void setDataCriacao(Date dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public LocalDate getDataAtualizacao() {
+    public Date getDataAtualizacao() {
         return dataAtualizacao;
     }
 
-    public void setDataAtualizacao(LocalDate dataAtualizacao) {
+    public void setDataAtualizacao(Date dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
     }
 
@@ -120,12 +120,12 @@ public class Lancamento implements Serializable {
 
     @PreUpdate
     public void preUpdate() {
-        dataAtualizacao = LocalDate.now();
+        dataAtualizacao = new Date();
     }
 
     @PrePersist
     public void prePersist() {
-        final LocalDate atual = LocalDate.now();
+        final Date atual = new Date();
         dataCriacao = atual;
         dataAtualizacao = atual;
     }

@@ -18,7 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,10 +58,10 @@ public class Funcionario implements Serializable {
     private PerfilEnum perfil;
 
     @Column(name = "data_criacao", nullable = false)
-    private LocalDate dataCriacao;
+    private Date dataCriacao;
 
     @Column(name = "data_atualizacao", nullable = false)
-    private LocalDate dataAtualizacao;
+    private Date dataAtualizacao;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Empresa empresa;
@@ -160,19 +160,19 @@ public class Funcionario implements Serializable {
         this.perfil = perfil;
     }
 
-    public LocalDate getDataCriacao() {
+    public Date getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(LocalDate dataCriacao) {
+    public void setDataCriacao(Date dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public LocalDate getDataAtualizacao() {
+    public Date getDataAtualizacao() {
         return dataAtualizacao;
     }
 
-    public void setDataAtualizacao(LocalDate dataAtualizacao) {
+    public void setDataAtualizacao(Date dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
     }
 
@@ -194,12 +194,12 @@ public class Funcionario implements Serializable {
 
     @PreUpdate
     public void preUpdate() {
-        dataAtualizacao = LocalDate.now();
+        dataAtualizacao = new Date();
     }
 
     @PrePersist
     public void prePersist() {
-        final LocalDate atual = LocalDate.now();
+        final Date atual = new Date();
         dataCriacao = atual;
         dataAtualizacao = atual;
     }

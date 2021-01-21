@@ -12,7 +12,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -32,10 +32,10 @@ public class Empresa implements Serializable {
     private String cnpj;
 
     @Column(name = "data_criacao", nullable = false)
-    private LocalDate dataCriacao;
+    private Date dataCriacao;
 
     @Column(name = "data_atualizacao", nullable = false)
-    private LocalDate dataAtualizacao;
+    private Date dataAtualizacao;
 
     @OneToMany(mappedBy = "empresa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Funcionario> listaFuncionarios;
@@ -68,19 +68,19 @@ public class Empresa implements Serializable {
         this.cnpj = cnpj;
     }
 
-    public LocalDate getDataCriacao() {
+    public Date getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(LocalDate dataCriacao) {
+    public void setDataCriacao(Date dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public LocalDate getDataAtualizacao() {
+    public Date getDataAtualizacao() {
         return dataAtualizacao;
     }
 
-    public void setDataAtualizacao(LocalDate dataAtualizacao) {
+    public void setDataAtualizacao(Date dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
     }
 
@@ -100,12 +100,12 @@ public class Empresa implements Serializable {
 
     @PreUpdate
     public void preUpdate() {
-        dataAtualizacao = LocalDate.now();
+        dataAtualizacao = new Date();
     }
 
     @PrePersist
     public void prePersist() {
-        final LocalDate atual = LocalDate.now();
+        final Date atual = new Date();
         dataCriacao = atual;
         dataAtualizacao = atual;
     }
