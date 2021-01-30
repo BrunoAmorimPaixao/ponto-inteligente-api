@@ -1,4 +1,4 @@
-package enums;
+package com.kazale.pontointeligente.enums;
 
 public enum TipoEnum {
     INICIO_TRABALHO,

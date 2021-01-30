@@ -1,6 +1,6 @@
-package entities;
+package com.kazale.pontointeligente.entities;
 
-import enums.TipoEnum;
+import com.kazale.pontointeligente.enums.TipoEnum;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
