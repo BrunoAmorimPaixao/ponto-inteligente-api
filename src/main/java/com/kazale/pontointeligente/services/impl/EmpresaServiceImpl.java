@@ -20,7 +20,7 @@ public class EmpresaServiceImpl implements EmpresaService {
     @Override
     public Optional<Empresa> buscarPorCnpj(String cnpj) {
         log.info("Buscando uma empresa para o CNPJ {}", cnpj);
-        return Optional.ofNullable(empresaRepository.findByCnpj(cnpj));
+        return Optional.ofNullable(this.empresaRepository.findByCnpj(cnpj));
     }
 
     @Override
